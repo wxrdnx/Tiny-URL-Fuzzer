@@ -1,22 +1,21 @@
-# coding: UTF-8
-
-from urlparse import urlparse
-import urllib, urllib2, httplib, requests
+import urllib.parse, urllib.request
+import http.client
+import requests
 
 def my_urlparse(url):
     try:
-        parsed = urlparse(url)
+        parsed = urllib.parse.urlparse(url)
         if parsed.port:
-            return 'scheme=%s, host=%s, port=%d' % (parsed.scheme, parsed.netloc, parsed.port)
+            return 'scheme={0}, host={1}, port={2}'.format(parsed.scheme, parsed.netloc, parsed.port)
         else:
-            return 'scheme=%s, host=%s, port=' % (parsed.scheme, parsed.netloc)    
+            return 'scheme={0}, host={1}, port='.format(parsed.scheme, parsed.netloc)
     except ValueError:
         return 'err'
 
 def my_httplib(url):
     try:
-        conn = httplib.HTTPConnection(urlparse(url).netloc)
-        conn.request("GET", urlparse(url).path)
+        conn = http.client.HTTPConnection(urlparse(url).netloc)
+        conn.request("GET", urllib.parse.urlparse(url).path)
         data = conn.getresponse().read().strip()
         conn.close()
     except Exception:
@@ -25,13 +24,7 @@ def my_httplib(url):
 
 def my_urllib(url):
     try:
-        return urllib.urlopen(url).read().strip()
-    except Exception:
-        return 'err'
-
-def my_urllib2(url):
-    try:
-        return urllib2.urlopen(url).read().strip()
+        return urllib.request.urlopen(url).read().strip()
     except Exception:
         return 'err'
 
@@ -40,4 +33,3 @@ def my_requests(url):
         return requests.get(url).content.strip()
     except Exception:
         return 'err'
-
