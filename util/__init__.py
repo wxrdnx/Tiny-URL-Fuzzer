@@ -1,15 +1,12 @@
-# coding: UTF-8
-
 import os
 import fuzz
 from subprocess import check_output, CalledProcessError
-
 
 DEV_NULL = open(os.devnull, 'w')
 def execute(lang, binary, url, base):
     if binary.startswith('self'):
         _, method_name = binary.split('.', 1)
-        method_name = 'my_%s' % method_name
+        method_name = 'my_{0}'.format(method_name)
         method = getattr(fuzz, method_name)
         r = method(url)
     else:
@@ -27,11 +24,11 @@ def cmd(cmd):
     except CalledProcessError:
         res = 'err'
     except OSError as e:
-        raise OSError('File Not Found: %s' % ' '.join(cmd))
+        raise OSError('File Not Found: {}'.format(' '.join(cmd)))
     return res
 
 def pprint(res):
-    print ''
+    print('')
     for key in sorted(res):
-        print '%-24s %s' % (key, res[key])
-    print ''
+        print('{0:<24} {1}' % (key, res[key]))
+    print('')
