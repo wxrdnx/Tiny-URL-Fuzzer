@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# coding: UTF-8
+#!/usr/bin/python3
 
 PARSERS = {
     'Python.urlparse'      :'self.urlparse', 
@@ -13,9 +12,8 @@ PARSERS = {
 }
 
 REQUESTERS = {
-    'Python.httplib'        :'self.httplib', 
+    'Python.httpclient'     :'self.httpclient', 
     'Python.urllib'         :'self.urllib', 
-    'Python.urllib2'        :'self.urllib2', 
     'Python.requests'       :'self.requests', 
     'PHP.open'              :'get.php', 
     'PHP.curl'              :'get.curl.php', 
