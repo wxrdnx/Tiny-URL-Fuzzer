@@ -1,11 +1,5 @@
-#!/usr/bin/python
-# coding: UTF-8
+#!/usr/bin/python3
 import sys
-from itertools import product
-from multiprocessing.dummy import Pool as ThreadPool
-
-import util.fuzz as fuzz
-from util import cmd, pprint, execute
 from const import PARSERS, REQUESTERS
 
 def run_parser(url):
@@ -43,10 +37,10 @@ for k,v in urls.iteritems():
     else:
         total[v] = [k]
 
-print [sys.argv[1]]
-print '[parsers]'
+print([sys.argv[1]])
+print('[parsers]')
 for k, v in sorted(total.iteritems(), key=lambda x: len(x[1]), reverse=True):
-    print '%-24s %d = '%([k], len(v)), v
+    print('{0:<24s} {1} = '.format([k], len(v)), v)
 
 total = {}
 for k,v in gets.iteritems():
@@ -56,7 +50,7 @@ for k,v in gets.iteritems():
     else:
         total[v] = [k]
 
-print '\n[requesters]'
+print('\n[requesters]')
 for k, v in sorted(total.iteritems(), key=lambda x: len(x[1]), reverse=True):
-    print '%-24s %d = '%(k, len(v)), v
-print ''
+    print('{0:<24} {1} = '.format(k, len(v)), v)
+print('')
