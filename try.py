@@ -1,8 +1,7 @@
-#!/usr/bin/python
-# coding: UTF-8
+#!/usr/bin/python3
 import sys
 
-from util import cmd, pprint, execute
+from util import pprint, execute
 from const import PARSERS, REQUESTERS
 
 URL = '\n'.join(sys.argv[1:])
